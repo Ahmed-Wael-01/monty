@@ -51,7 +51,7 @@ char **line_breaker(char *str);
 int word_cnt(char *str);
 int word_len(char *str);
 char **splice(char *str);
-void select(int line, char *ins, char *arg);
+void selector(int line, char *ins, char *arg);
 void add_stack(stack_t **stack, unsigned int line);
 void print_stack(stack_t **stack, unsigned int line);
 

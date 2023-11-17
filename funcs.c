@@ -9,7 +9,7 @@
  *Description: it selects a function from the ops
  */
 
-void select(int line, char *ins, char *arg)
+void selector(int line, char *ins, char *arg)
 {
 	int i, j, flag = 0;
 	stack_t *node;
