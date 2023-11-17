@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- *select - selects the right function
+ *selector - selects the right function
  *@line: line number
  *@ins: the instruction
  *@arg: the value

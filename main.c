@@ -18,7 +18,7 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		write(2, "USAGE: monty file\n", 18);
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(av[1], "r");
