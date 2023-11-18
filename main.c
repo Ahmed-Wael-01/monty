@@ -30,13 +30,14 @@ int main(int ac, char **av)
 	fseek(fd, 0, SEEK_END);
 	words = ftell(fd);
 	fseek(fd, 0, SEEK_SET);
-	buf = malloc(sizeof(char) * words);
+	buf = malloc(sizeof(char) * (words + 1));
 	if (buf == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	fread(buf, sizeof(char), words, fd);
+	*(buf + words) = '\0';
 	fclose(fd);
 	lines = line_breaker(buf);
 	free(buf);
@@ -44,6 +45,8 @@ int main(int ac, char **av)
 	{
 		cmd = splice(lines[words]);
 		selector(words + 1, cmd[0], cmd[1]);
+		shfree(cmd);
 	}
+	shfree(lines), free_dlistint(head);
 	return (0);
 }
