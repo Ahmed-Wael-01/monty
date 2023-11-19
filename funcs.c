@@ -53,7 +53,7 @@ void func_call(int line, instruction_t operand, char **arg, char **lines)
 
 			if (_strcmp(operand.opcode, "push") == 0)
 			{
-				if (arg[1] == NULL)
+				if (arg[1] == NULL || arg[2] != NULL)
 				{
 					fprintf(stderr, "L%d: usage: push integer\n", line);
 					shfree(arg), shfree(lines);
