@@ -17,6 +17,7 @@ void selector(int line, char **arg, char **lines)
 		{"push", add_stack},
 		{"pall", print_stack},
 		{"pint", pints},
+		{"pop", pops},
 		{NULL, NULL}
 	};
 	for (i = 0; funcs[i].opcode != NULL; i++)
@@ -121,8 +122,14 @@ void print_stack(stack_t **stack, unsigned int line)
 	stack_t *curr;
 
 	(void)line;
-	for (curr = *stack; curr != NULL; curr = curr->next)
+	if (stack == NULL)
+		exit(EXIT_FAILURE);
+	curr = *stack;
+	while (curr != NULL)
+	{
 		printf("%d\n", curr->n);
+		curr = curr->next;
+	}
 }
 
 /**

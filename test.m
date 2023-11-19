@@ -1,6 +1,10 @@
-push 6$
-push 5$
-pint$
-push 8$
-push 4$
-pall$
+push 1
+push 2
+push 3
+pall
+pop
+pall
+pop
+pall
+pop
+pall
