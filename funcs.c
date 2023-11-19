@@ -16,6 +16,7 @@ void selector(int line, char **arg, char **lines)
 	instruction_t funcs[] = {
 		{"push", add_stack},
 		{"pall", print_stack},
+		{"pint", pints},
 		{NULL, NULL}
 	};
 	for (i = 0; funcs[i].opcode != NULL; i++)
@@ -123,3 +124,22 @@ void print_stack(stack_t **stack, unsigned int line)
 	for (curr = *stack; curr != NULL; curr = curr->next)
 		printf("%d\n", curr->n);
 }
+
+/**
+* pints - adds a node
+* @stack: the new node
+* @line: the line number
+*
+* Description: prints the whole stack
+*/
+
+void pints(stack_t **stack, unsigned int line)
+{
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
+

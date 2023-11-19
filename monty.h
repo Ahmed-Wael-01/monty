@@ -55,6 +55,7 @@ void selector(int line, char **arg, char **lines);
 void func_call(int line, instruction_t operand, char **arg, char **lines);
 void add_stack(stack_t **stack, unsigned int line);
 void print_stack(stack_t **stack, unsigned int line);
+void pints(stack_t **stack, unsigned int line);
 void shfree(char **str);
 void free_dlistint(stack_t *head);
 
