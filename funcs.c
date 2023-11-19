@@ -3,16 +3,15 @@
 /**
  *selector - selects the right function
  *@line: line number
- *@ins: the instruction
- *@arg: the value
+ *@arg: the instruction
+ *@lines: the value
  *
  *Description: it selects a function from the ops
  */
 
-void selector(int line, char *ins, char *arg)
+void selector(int line, char **arg, char **lines)
 {
-	int i, j, flag = 0;
-	stack_t *node;
+	int i, flag = 0;
 
 	instruction_t funcs[] = {
 		{"push", add_stack},
@@ -21,36 +20,65 @@ void selector(int line, char *ins, char *arg)
 	};
 	for (i = 0; funcs[i].opcode != NULL; i++)
 	{
-		if (_strcmp(funcs[i].opcode, ins) == 0)
+		if (_strcmp(funcs[i].opcode, arg[0]) == 0)
 		{
 			flag = 1;
-			if (i == 0)
-			{
-				for (j = 0; arg[j] != '\0'; j++)
-				{
-					if (arg[0] == '-' && j == 0)
-						continue;
-					if (_isdigit(arg[j]) == 0)
-					{
-						fprintf(stderr, "L%d: usage: push integer\n", line);
-						exit(EXIT_FAILURE);
-					}
-				}
-				node = malloc(sizeof(stack_t));
-				node->n = _atoi(arg);
-				funcs[i].f(&node, line);
-			}
-			else
-				funcs[i].f(&head, line);
+			func_call(line, funcs[i], arg, lines);
+			break;
 		}
 	}
 	if (flag == 0)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line, ins);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line, arg[0]);
+		shfree(arg), shfree(lines);
+		free_dlistint(head);
 		exit(EXIT_FAILURE);
 	}
 }
 
+/**
+ *func_call - selects the right function
+ *@line: line number
+ *@operand: the instruction
+ *@arg: the value
+ *@lines: the whole lines
+ *
+ *Description: it selects a function from the ops
+ */
+
+void func_call(int line, instruction_t operand, char **arg, char **lines)
+{
+	int j;
+	stack_t *node;
+
+			if (_strcmp(operand.opcode, "push") == 0)
+			{
+				if (arg[1] == NULL)
+				{
+					fprintf(stderr, "L%d: usage: push integer\n", line);
+					shfree(arg), shfree(lines);
+					free_dlistint(head);
+					exit(EXIT_FAILURE);
+				}
+				for (j = 0; arg[1][j] != '\0'; j++)
+				{
+					if (arg[1][0] == '-' && j == 0)
+						continue;
+					if (_isdigit(arg[1][j]) == 0)
+					{
+						fprintf(stderr, "L%d: usage: push integer\n", line);
+						shfree(arg), shfree(lines);
+						free_dlistint(head);
+						exit(EXIT_FAILURE);
+					}
+				}
+				node = malloc(sizeof(stack_t));
+				node->n = _atoi(arg[1]);
+				operand.f(&node, line);
+			}
+			else
+				operand.f(&head, line);
+}
 /**
 * add_stack - adds a node
 * @stack: the new node

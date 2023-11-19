@@ -44,7 +44,7 @@ int main(int ac, char **av)
 	for (words = 0; lines[words] != NULL; words++)
 	{
 		cmd = splice(lines[words]);
-		selector(words + 1, cmd[0], cmd[1]);
+		selector(words + 1, cmd, lines);
 		shfree(cmd);
 	}
 	shfree(lines), free_dlistint(head);
