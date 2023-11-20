@@ -21,6 +21,7 @@ void selector(int line, char **arg, char **lines)
 		{"swap", swaps},
 		{"add", adds},
 		{"nop", nop},
+		{"sub", subs},
 		{NULL, NULL}
 	};
 	for (i = 0; funcs[i].opcode != NULL; i++)
