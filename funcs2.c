@@ -77,3 +77,14 @@ void adds(stack_t **stack, unsigned int line)
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
+
+/**
+ * nop - nothing
+ * @stack: head
+ * @line: line number
+ */
+void nop(stack_t **stack, unsigned int line)
+{
+	(void)stack;
+	(void)line_number;
+}
