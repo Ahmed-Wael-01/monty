@@ -48,8 +48,10 @@ void swaps(stack_t **stack, unsigned int line)
 	}
 	node = (*stack)->next;
 	(*stack)->next = node->next;
+	if (node->next != NULL)
+		node->next->prev = *stack;
+	node->next = *stack;
 	(*stack)->prev = node;
 	node->prev = NULL;
-	node->next = *stack;
-	head = node;
+	*stack = node;
 }
