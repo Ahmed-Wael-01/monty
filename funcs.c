@@ -18,6 +18,7 @@ void selector(int line, char **arg, char **lines)
 		{"pall", print_stack},
 		{"pint", pints},
 		{"pop", pops},
+		{"swap", swaps},
 		{NULL, NULL}
 	};
 	for (i = 0; funcs[i].opcode != NULL; i++)

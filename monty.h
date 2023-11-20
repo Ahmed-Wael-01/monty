@@ -57,6 +57,7 @@ void add_stack(stack_t **stack, unsigned int line);
 void print_stack(stack_t **stack, unsigned int line);
 void pints(stack_t **stack, unsigned int line);
 void pops(stack_t **stack, unsigned int line);
+void swaps(stack_t **stack, unsigned int line);
 void shfree(char **str);
 void free_dlistint(stack_t *head);
 
