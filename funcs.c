@@ -20,6 +20,7 @@ void selector(int line, char **arg, char **lines)
 		{"pop", pops},
 		{"swap", swaps},
 		{"add", adds},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 	for (i = 0; funcs[i].opcode != NULL; i++)
