@@ -55,3 +55,25 @@ void swaps(stack_t **stack, unsigned int line)
 	node->prev = NULL;
 	*stack = node;
 }
+
+/**
+ * add_nodes - Adds two nodes
+ * @stack: head
+ * @line: line number
+ */
+void adds(stack_t **stack, unsigned int line)
+{
+	int sum;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short", line);
+		exit(EXIT_FAILURE);
+	}
+
+	(*stack) = (*stack)->next;
+	sum = (*stack)->n + (*stack)->prev->n;
+	(*stack)->n = sum;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
