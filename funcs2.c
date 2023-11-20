@@ -39,14 +39,17 @@ void pops(stack_t **stack, unsigned int line)
 
 void swaps(stack_t **stack, unsigned int line)
 {
-	int i;
+	stack_t *node;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short", line);
 		exit(EXIT_FAILURE);
 	}
-	i = (*stack)->n;
-	(*stack)->n = (*stack)->next->n;
-	(*stack)->next->n = i;
+	node = (*stack)->next;
+	(*stack)->next = node->next;
+	(*stack)->prev = node;
+	node->prev = NULL;
+	node->next = *stack;
+	head = node;
 }
