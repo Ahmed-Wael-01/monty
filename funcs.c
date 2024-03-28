@@ -59,7 +59,7 @@ void func_call(int line, instruction_t operand, char **arg, char **lines)
 
 			if (_strcmp(operand.opcode, "push") == 0)
 			{
-				if (arg[1] == NULL || arg[2] != NULL)
+				if (arg[1] == NULL)
 				{
 					fprintf(stderr, "L%d: usage: push integer\n", line);
 					shfree(arg), shfree(lines);
@@ -72,7 +72,7 @@ void func_call(int line, instruction_t operand, char **arg, char **lines)
 						continue;
 					if (_isdigit(arg[1][j]) == 0)
 					{
-						fprintf(stderr, "L%d: usage: push integer\n", line);
+						printf("L%d: usage: push integer\n", line);
 						shfree(arg), shfree(lines);
 						free_dlistint(head);
 						exit(EXIT_FAILURE);
