@@ -12,6 +12,16 @@
 int _strcmp(char *s1, char *s2)
 {
 	int i;
+	int fstr;
+	int scstr;
+
+	fstr = _strlen(s1);
+	scstr = _strlen(s2);
+
+	if (fstr > scstr)
+		return (fstr - scstr);
+	if (scstr > fstr)
+		return (scstr - fstr);
 
 	for (i = 0; s1[i] != '\0'; i++)
 	{
