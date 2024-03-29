@@ -33,6 +33,7 @@ int main(int ac, char **av)
 	buf = malloc(sizeof(char) * (words + 1));
 	if (buf == NULL)
 	{
+		fclose(fd);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
